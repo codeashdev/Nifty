@@ -11,7 +11,7 @@ npm install
 Create a .env file and add your API key to it:
 
 ```bash
-VITE_NFTPORT_API_KEY='YOUR_API_KEY_HERE'E'
+VITE_NFTPORT_API_KEY='YOUR_API_KEY_HERE'
 ```
 
 ## Run the dev server:
