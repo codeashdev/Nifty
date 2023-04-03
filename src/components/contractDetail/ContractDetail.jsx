@@ -4,7 +4,7 @@ function ContractDetail({ contract, total }) {
   return (
     <div className="flex flex-col lg:flex-row justify-evenly items-center shadow-lg mx-20 my-8 p-8">
       <div className="rounded-full">
-        <img src={contract.metadata.cached_thumbnail_url} alt="nft_image" className="h-70 w-70" />
+        <img src={contract.metadata.cached_thumbnail_url} alt="nft_image" className="w-80" />
       </div>
 
       <div className="w-3/4 lg:w-1/2 text-sm lg:text-base">
