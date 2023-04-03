@@ -1,11 +1,12 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+/* eslint-disable no-param-reassign */
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const fetchNFTs = createAsyncThunk(
-  'nfts/fetchNFTs',
+  "nfts/fetchNFTs",
   async ([search, page, chain]) => {
-    const options = {method: 'GET', headers: {accept: 'application/json', Authorization: import.meta.env.VITE_NFTPORT_API_KEY}};
+    const options = { method: "GET", headers: { accept: "application/json", Authorization: import.meta.env.VITE_NFTPORT_API_KEY } };
     const contractAdd = "0x364C828eE171616a39897688A831c2499aD972ec";
     // const chain = "ethereum";
     try {
@@ -17,38 +18,38 @@ export const fetchNFTs = createAsyncThunk(
       const data = await response.json();
       return data;
     } catch (error) {
-      toast.error('Error fetching NFTs: ' + error);
+      toast.error(`Error fetching NFTs: ${error}`);
       throw error;
     }
-  }
+  },
 );
 
 const nftsSlice = createSlice({
-  name: 'nfts',
+  name: "nfts",
   initialState: {
-      nfts: [],
-      total: 0,
-      status: 'idle',
-      error: null,
-      page: 1
+    nfts: [],
+    total: 0,
+    status: "idle",
+    error: null,
+    page: 1,
   },
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
       .addCase(fetchNFTs.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(fetchNFTs.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.status = "succeeded";
         state.nfts = action.payload;
         // state.nfts = [...state.nfts.nfts.nfts, ...action.payload.nfts];
         state.total = action.payload.total;
       })
       .addCase(fetchNFTs.rejected, (state, action) => {
-        state.status = 'failed';
+        state.status = "failed";
         state.error = action.error.message;
       });
-  }
+  },
 });
 export const selectContract = (state) => state.nfts.nfts;
 export const selectNFTs = (state) => state.nfts.nfts.nfts;
