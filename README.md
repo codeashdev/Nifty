@@ -8,13 +8,13 @@ Fetch NFTs from different chains, either from a specific address or from a contr
 
 ## Next up:
 
-- [ ] Fetch data from specific address/wallet
 - [ ] Add NFT details modal
 - [ ] Add API key by the user option
 - [ ] Save API key in the local storage
 
 ## Recent Add-ons:
 
+- [x] Fetch data from specific address/wallet
 - [x] Add contract details section
 - [x] Add Chain selection option
 

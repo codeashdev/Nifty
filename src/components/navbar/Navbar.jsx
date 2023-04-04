@@ -2,20 +2,34 @@ import React, { useContext, useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import logo from "../../assets/logo.png";
-
+import SearchInput from "../searchInput/SearchInput";
+import { fetchWallet } from "../../data/retrieveWallet/walletSlice";
 import { fetchNFTs } from "../../data/retrieveContract/contractSlice";
 import { InputContext } from "../../inputContext/inputContext";
 
 const Navbar = () => {
   const {
-    search, handleSearchChange, chain, handleChainChange,
+    nftSearch,
+    handleNftSearchChange,
+    walletSearch,
+    handleWalletSearchChange,
+    chain,
+    handleChainChange,
+    handleAddressChange,
+    address,
   } = useContext(InputContext);
 
   const dispatch = useDispatch();
   const page = useRef(1);
+
   const onClick = () => {
-    dispatch(fetchNFTs([search, page.current, chain]));
+    if (address === "nfts" && nftSearch) {
+      dispatch(fetchNFTs([nftSearch, page.current, chain, address]));
+    } else {
+      dispatch(fetchWallet([walletSearch, chain, address]));
+    }
   };
+
   return (
     <div className="navbar bg-slate-200">
       <div className="flex-1 gap-4">
@@ -23,18 +37,31 @@ const Navbar = () => {
           <img src={logo} alt="logo" className="h-14" />
         </span>
         <div className="form-control hidden lg:block">
-          <input
-            type="text"
-            value={search}
-            placeholder="Search"
-            className="input input-bordered bg-slate-50"
-            onChange={handleSearchChange}
-          />
+          {address === "nfts" && (
+            <SearchInput
+              className="hidden lg:block"
+              searchTerm={nftSearch}
+              handleChnage={handleNftSearchChange}
+            />
+          )}
+          {address === "accounts" && (
+            <SearchInput
+              className="hidden lg:block"
+              searchTerm={walletSearch}
+              handleChnage={handleWalletSearchChange}
+            />
+          )}
         </div>
-
-        <select className="hidden lg:block select w-43 bg-slate-20">
-          <option>Contract Address</option>
-          <option>Account/Wallet Address</option>
+        <select
+          className="select select-bordered w-43 bg-slate-20 hidden lg:block"
+          value={address}
+          onChange={handleAddressChange}
+        >
+          <option value="" disabled>
+            Address
+          </option>
+          <option value="nfts">Contract Address</option>
+          <option value="accounts">Account/Wallet Address</option>
         </select>
 
         <select
@@ -49,15 +76,14 @@ const Navbar = () => {
           <option value="polygon">Polygon</option>
         </select>
 
-        {!(chain && search) ? (
-          <button type="button" className="btn hidden lg:block" disabled>
-            Search
-          </button>
-        ) : (
-          <button type="button" className="btn hidden lg:block" onClick={onClick}>
-            Search
-          </button>
-        )}
+        <button
+          type="button"
+          className="btn hidden lg:block"
+          disabled={!(chain && address && (address === "nfts" ? nftSearch : walletSearch))}
+          onClick={onClick}
+        >
+          Search
+        </button>
       </div>
     </div>
   );
