@@ -16,7 +16,7 @@ import Card from "./components/card/Card";
 import { renderStatus } from "./components/renderStatus/renderStatus";
 import SearchBar from "./components/searchBar/searchBar";
 
-function App() {
+const App = () => {
   const contract = useSelector(selectContract);
   const nfts = useSelector(selectNFTs);
   const status = useSelector(selectNFTsStatus);
@@ -34,6 +34,6 @@ function App() {
       </ContentSection>
     </>
   );
-}
+};
 
 export default App;

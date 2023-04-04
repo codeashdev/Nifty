@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { fetchNFTs } from "../../data/retrieveContract/contractSlice";
 import { InputContext } from "../../inputContext/inputContext";
 
-function SearchBar() {
+const SearchBar = () => {
   const {
     search, handleSearchChange, chain, handleChainChange,
   } = useContext(InputContext);
@@ -38,6 +38,6 @@ function SearchBar() {
 
     </div>
   );
-}
+};
 
 export default SearchBar;

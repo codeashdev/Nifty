@@ -6,7 +6,7 @@ import React, {
 export const InputContext = createContext();
 
 // Create a context provider component
-export function InputProvider({ children }) {
+export const InputProvider = ({ children }) => {
   const [search, setSearch] = useState("");
   const [address, setAddress] = useState("");
   const [chain, setChain] = useState("");
@@ -37,4 +37,4 @@ export function InputProvider({ children }) {
       {children}
     </InputContext.Provider>
   );
-}
+};

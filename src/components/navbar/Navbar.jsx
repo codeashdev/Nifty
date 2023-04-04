@@ -6,7 +6,7 @@ import logo from "../../assets/logo.png";
 import { fetchNFTs } from "../../data/retrieveContract/contractSlice";
 import { InputContext } from "../../inputContext/inputContext";
 
-function Navbar() {
+const Navbar = () => {
   const {
     search, handleSearchChange, chain, handleChainChange,
   } = useContext(InputContext);
@@ -61,6 +61,6 @@ function Navbar() {
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;
