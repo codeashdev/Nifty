@@ -19,12 +19,8 @@ import {
 } from "./data/retrieveWallet/walletSlice";
 
 import Navbar from "./components/navbar/Navbar";
-import ContentSection from "./components/contentSection/ContentSection";
-import ContractDetail from "./components/contractDetail/ContractDetail";
-import CardNFT from "./components/card/CardNFT";
-import CardWallet from "./components/card/CardWallet";
-import { renderStatus } from "./components/renderStatus/renderStatus";
 import SearchBar from "./components/searchBar/searchBar";
+import { renderContent } from "./components/renderContent/renderContent";
 
 const App = () => {
   const { address, nftSearch, walletSearch } = useContext(InputContext);
@@ -40,30 +36,25 @@ const App = () => {
   const statusWallet = useSelector(selectWalletStatus);
   const countWallet = useSelector(selectWalletCount);
 
+  // console.log(wallet);
+
   return (
     <>
       <Navbar />
       <SearchBar />
-      {address === "nfts" && nftSearch && (
-        <>
-          {renderStatus(statusNFT, errorNFT)}
-          {statusNFT === "succeeded" && (
-            <ContractDetail contract={contract.contract} total={countNFT} />
-          )}
-          <ContentSection>
-            {statusNFT === "succeeded" &&
-              nfts.map((nft) => <CardNFT nft={nft} key={nft.token_id} />)}
-          </ContentSection>
-        </>
-      )}
-      {address === "accounts" && walletSearch && (
-        <>
-          {renderStatus(statusWallet, errorWallet)}
-          <ContentSection>
-            {statusWallet === "succeeded" &&
-              wallet.map((nft) => <CardWallet nft={nft} key={nft.token_id} />)}
-          </ContentSection>
-        </>
+      {renderContent(
+        address,
+        nftSearch,
+        contract,
+        nfts,
+        statusNFT,
+        errorNFT,
+        countNFT,
+        wallet,
+        errorWallet,
+        statusWallet,
+        countWallet,
+        walletSearch
       )}
     </>
   );

@@ -10,7 +10,7 @@ export const fetchWallet = createAsyncThunk(
       method: "GET",
       headers: { accept: "application/json", Authorization: import.meta.env.VITE_NFTPORT_API_KEY },
     };
-    // const contractAdd = "0xf5663d0eee3620c4a88e28e392aac72d077a8c4d";
+    // example address = "0xf5663d0eee3620c4a88e28e392aac72d077a8c4d";
     // const chain = "ethereum";
 
     const response = await fetch(
