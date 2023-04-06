@@ -14,9 +14,10 @@ Fetch NFTs from different chains, either from a specific address or from a contr
 
 ## Recent Add-ons:
 
-- [x] Fetch data from specific address/wallet
-- [x] Add contract details section
-- [x] Add Chain selection option
+- [x] Add wallet details modal 06/04/2023
+- [x] Fetch data from specific address/wallet 04/04/2023
+- [x] Add contract details section 01/04/2023
+- [x] Add Chain selection option 01/04/2023
 
 ## Install dependencies:
 
