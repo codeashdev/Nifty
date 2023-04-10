@@ -14,7 +14,7 @@ export const fetchNFTs = createAsyncThunk(
     // const chain = "ethereum";
 
     const response = await fetch(
-      `https://api.nftport.xyz/v0/${address}/${nftSearch}?chain=${chain}&page_number=${page}&page_size=8&include=metadata&refresh_metadata=false`,
+      `https://api.nftport.xyz/v0/${address}/${nftSearch}?chain=${chain}&page_number=${page}&page_size=50&include=metadata&refresh_metadata=false`,
       options
     );
     if (!response.ok) {
