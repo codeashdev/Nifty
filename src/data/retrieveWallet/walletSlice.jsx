@@ -8,7 +8,7 @@ export const fetchWallet = createAsyncThunk(
   async ([walletSearch, chain, address]) => {
     const options = {
       method: "GET",
-      headers: { accept: "application/json", Authorization: import.meta.env.VITE_NFTPORT_API_KEY },
+      headers: { accept: "application/json", Authorization: localStorage.getItem("nftportApi") },
     };
     // example address = "0xf5663d0eee3620c4a88e28e392aac72d077a8c4d";
     // const chain = "ethereum";

@@ -8,7 +8,7 @@ export const fetchNFTs = createAsyncThunk(
   async ([nftSearch, page, chain, address]) => {
     const options = {
       method: "GET",
-      headers: { accept: "application/json", Authorization: import.meta.env.VITE_NFTPORT_API_KEY },
+      headers: { accept: "application/json", Authorization: localStorage.getItem("nftportApi") },
     };
     // const contractAdd = "0x364C828eE171616a39897688A831c2499aD972ec";
     // const chain = "ethereum";

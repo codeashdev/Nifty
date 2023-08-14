@@ -1,5 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 import logo from "../../assets/logo.png";
 import settingsLogo from "../../assets/icons8-settings.svg";
@@ -40,10 +41,18 @@ const Navbar = () => {
   const page = useRef(1);
 
   const onClick = () => {
-    if (address === "nfts" && nftSearch) {
-      dispatch(fetchNFTs([nftSearch, page.current, chain, address]));
+    const nftportApi = localStorage.getItem("nftportApi");
+
+    if (nftportApi) {
+      // The "nftportApi" is not empty, proceed with the action
+      if (address === "nfts" && nftSearch) {
+        dispatch(fetchNFTs([nftSearch, page.current, chain, address]));
+      } else {
+        dispatch(fetchWallet([walletSearch, chain, address]));
+      }
     } else {
-      dispatch(fetchWallet([walletSearch, chain, address]));
+      toast.info("Please add your API key!");
+      setIsModalOpen(true);
     }
   };
 

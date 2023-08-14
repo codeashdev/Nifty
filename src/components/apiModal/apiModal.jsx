@@ -1,4 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
+import { toast } from "react-toastify";
+
 import { InputContext } from "../../inputContext/inputContext";
 
 const ApiModal = ({ closeModal }) => {
@@ -15,12 +17,14 @@ const ApiModal = ({ closeModal }) => {
   const handleSave = () => {
     localStorage.setItem("nftportApi", apiKey);
     setLocalApi(apiKey); // Update the localApi state
+    toast.success("API key saved successfully!");
   };
 
   const handleDelete = () => {
     localStorage.removeItem("nftportApi");
     setLocalApi(null); // Update the localApi state
     clearApikeyInput();
+    toast.success("API key deleted successfully!");
   };
 
   return (

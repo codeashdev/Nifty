@@ -1,12 +1,15 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 import SearchInput from "../searchInput/SearchInput";
 import { fetchWallet } from "../../data/retrieveWallet/walletSlice";
 import { fetchNFTs } from "../../data/retrieveContract/contractSlice";
 import { InputContext } from "../../inputContext/inputContext";
+import ApiModal from "../apiModal/apiModal";
 
 const SearchBar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     nftSearch,
     handleNftSearchChange,
@@ -20,11 +23,24 @@ const SearchBar = () => {
 
   const dispatch = useDispatch();
   const page = useRef(1);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const onClick = () => {
-    if (address === "nfts" && nftSearch) {
-      dispatch(fetchNFTs([nftSearch, page.current, chain, address]));
+    const nftportApi = localStorage.getItem("nftportApi");
+
+    if (nftportApi) {
+      // The "nftportApi" is not empty, proceed with the action
+      if (address === "nfts" && nftSearch) {
+        dispatch(fetchNFTs([nftSearch, page.current, chain, address]));
+      } else {
+        dispatch(fetchWallet([walletSearch, chain, address]));
+      }
     } else {
-      dispatch(fetchWallet([walletSearch, chain, address]));
+      toast.info("Please add your API key!");
+      setIsModalOpen(true);
     }
   };
   return (
@@ -69,6 +85,7 @@ const SearchBar = () => {
       >
         Search
       </button>
+      {isModalOpen && <ApiModal closeModal={closeModal} />}
     </div>
   );
 };
