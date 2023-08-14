@@ -9,6 +9,7 @@ export const InputProvider = ({ children }) => {
   const [walletSearch, setWaletSearch] = useState("");
   const [address, setAddress] = useState("");
   const [chain, setChain] = useState("");
+  const [apiKey, setApiKey] = useState("");
 
   const handleNftSearchChange = useCallback((event) => {
     setNftSearch(event.target.value);
@@ -25,6 +26,12 @@ export const InputProvider = ({ children }) => {
   const handleChainChange = useCallback((event) => {
     setChain(event.target.value);
   }, []);
+  const handleApiKeyChange = useCallback((event) => {
+    setApiKey(event.target.value);
+  }, []);
+  const clearApikeyInput = useCallback(() => {
+    setApiKey("");
+  }, []);
 
   const contextValues = useMemo(
     () => ({
@@ -36,6 +43,9 @@ export const InputProvider = ({ children }) => {
       handleAddressChange,
       chain,
       handleChainChange,
+      apiKey,
+      handleApiKeyChange,
+      clearApikeyInput,
     }),
     [
       nftSearch,
@@ -46,6 +56,9 @@ export const InputProvider = ({ children }) => {
       handleAddressChange,
       chain,
       handleChainChange,
+      apiKey,
+      handleApiKeyChange,
+      clearApikeyInput,
     ]
   );
 

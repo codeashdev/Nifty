@@ -1,6 +1,6 @@
 import React from "react";
 
-import RenderStatus from "../renderStatus/RenderStatus";
+import RenderStatus from "../renderStatus/renderStatus";
 
 import ContractDetail from "../contractDetail/ContractDetail";
 import ContentSection from "../contentSection/ContentSection";

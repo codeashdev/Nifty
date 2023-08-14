@@ -28,7 +28,7 @@ const SearchBar = () => {
     }
   };
   return (
-    <div className="flex flex-row justify-center m-8 lg:hidden gap-4 flex-col md:flex-row md:gap-5">
+    <div className="flex justify-center m-8 lg:hidden gap-4 flex-col md:flex-row md:gap-5">
       <div className="form-control">
         {address === "nfts" && (
           <SearchInput searchTerm={nftSearch} handleChnage={handleNftSearchChange} />
