@@ -40,3 +40,9 @@ Now add the API-KEY directly into the app
 ```bash
 npm run dev
 ```
+
+## Deployed Version:
+
+```bash
+[Nifty](https://www.fabulous-entremet-57316e.netlify.app)
+```
