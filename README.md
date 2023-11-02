@@ -46,3 +46,7 @@ npm run dev
 ```bash
 [Nifty](https://www.fabulous-entremet-57316e.netlify.app)
 ```
+
+## Deployed Version:
+
+[Nifty](https://www.fabulous-entremet-57316e.netlify.app)
